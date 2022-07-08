@@ -3,11 +3,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "FactionAgentInterface.h"
 #include "GameFramework/Character.h"
 #include "EasyFaction_DemoCharacter.generated.h"
 
 UCLASS(config=Game)
-class AEasyFaction_DemoCharacter : public ACharacter
+class AEasyFaction_DemoCharacter : public ACharacter, public IFactionAgentInterface
 {
 	GENERATED_BODY()
 
@@ -18,6 +19,7 @@ class AEasyFaction_DemoCharacter : public ACharacter
 	/** Follow camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FollowCamera;
+	
 public:
 	AEasyFaction_DemoCharacter();
 
@@ -33,14 +35,14 @@ protected:
 	/** Called for side to side input */
 	void MoveRight(float Value);
 
-	/** 
-	 * Called via input to turn at a given rate. 
+	/**
+	 * Called via input to turn at a given rate.
 	 * @param Rate	This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
 	 */
 	void TurnAtRate(float Rate);
 
 	/**
-	 * Called via input to turn look up/down at a given rate. 
+	 * Called via input to turn look up/down at a given rate.
 	 * @param Rate	This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
 	 */
 	void LookUpAtRate(float Rate);
@@ -61,5 +63,16 @@ public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+
+protected:
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Reputation")
+	class UReputationComponent* ReputationComponent;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Faction")
+	FFaction Faction;
+
+	virtual FFaction GetFaction() const override;
+	virtual void SetFaction(const FFaction& InFaction) override;
 };
 
