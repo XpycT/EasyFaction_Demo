@@ -1,0 +1,33 @@
+﻿.vs
+.vscode
+.idea
+*.slo
+*.so
+*.dylib
+*.dll
+*.exe
+*.out
+*.app
+
+*.xcodeproj
+*.xcworkspace
+*.sln
+*.suo
+*.opensdf
+*.sdf
+*.VC.db
+*.VC.opendb
+
+# Binary Files
+Binaries/*
+Plugins/*/Binaries/*
+Plugins/Developer/RiderLink/*
+Build/*
+
+# Built data for maps
+*_BuiltData.uasset
+Saved/*
+Intermediate/*
+Plugins/*/Intermediate/*
+DerivedDataCache/*
+
