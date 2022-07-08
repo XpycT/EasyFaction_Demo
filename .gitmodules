@@ -1,0 +1,3 @@
+[submodule "Plugins/EasyFactions"]
+	path = Plugins/EasyFactions
+	url = https://github.com/XpycT/EasyFactions.git
